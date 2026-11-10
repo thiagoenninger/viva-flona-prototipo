@@ -1,0 +1,105 @@
+:root {
+  --verde: #18352b;
+  --verde-2: #385447;
+  --areia: #ede5d7;
+  --marfim: #f7f3ea;
+  --terracota: #b66b42;
+  --bronze: #ae8860;
+  --grafite: #202722;
+  --branco: #ffffff;
+
+  --font-title: 'Manrope Variable', system-ui, sans-serif;
+  --font-text: 'Inter Variable', system-ui, sans-serif;
+  --pad: clamp(20px, 5vw, 88px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { background: var(--grafite); -webkit-text-size-adjust: 100%; overflow-x: clip; }
+body {
+  font-family: var(--font-text);
+  font-size: clamp(16px, 0.9vw + 0.6rem, 19px);
+  line-height: 1.65;
+  color: var(--grafite);
+  background: var(--grafite);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; }
+
+/* Tipografia */
+.t-hero { font: 300 clamp(44px, 7.2vw, 112px) / 1.02 var(--font-title); letter-spacing: -0.035em; }
+.t-chapter { font: 300 clamp(36px, 5.2vw, 78px) / 1.05 var(--font-title); letter-spacing: -0.03em; }
+.t-sub { font: 400 clamp(26px, 2.8vw, 40px) / 1.15 var(--font-title); letter-spacing: -0.02em; }
+.t-lead { font: 300 clamp(26px, 3.3vw, 50px) / 1.18 var(--font-title); letter-spacing: -0.02em; }
+.kicker {
+  font: 600 12px / 1 var(--font-title);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  display: block;
+  margin-bottom: 1.6rem;
+}
+.caption { font: 500 12.5px / 1.5 var(--font-title); letter-spacing: 0.04em; opacity: 0.75; }
+.body-text { max-width: 36ch; font-size: clamp(16px, 1.25vw, 20px); }
+
+/* Palco fixo (sticky) usado nas cenas controladas por scroll — sem pin do GSAP */
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+
+.cover { width: 100%; height: 100%; object-fit: cover; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Cabeçalho — camada própria (pseudo-elemento) com fundo translúcido + blur, adaptada ao tom da seção */
+:root { --header-h: 64px; }
+.header {
+  position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad);
+  color: var(--marfim);
+  --hbg: rgba(16, 28, 22, 0.78);
+  --hline: rgba(247, 243, 234, 0.1);
+  transition: color 0.4s ease;
+}
+.header[data-tone='light'] {
+  color: var(--grafite);
+  --hbg: rgba(247, 243, 234, 0.82);
+  --hline: rgba(32, 39, 34, 0.1);
+}
+.header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--hbg); border-bottom: 1px solid var(--hline);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15); backdrop-filter: blur(16px) saturate(1.15);
+  transition: background-color 0.4s ease, opacity 0.4s ease;
+}
+/* Sobre o hero (topo da página) o fundo some e entra um degradê leve para legibilidade */
+.header[data-top='true']::before {
+  background: linear-gradient(rgba(10, 18, 14, 0.5), rgba(10, 18, 14, 0));
+  border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.header__brand { font: 800 13px / 1 var(--font-title); letter-spacing: 0.22em; text-transform: uppercase; }
+.header__brand span { font-weight: 300; }
+.header__nav { display: flex; gap: clamp(14px, 2.4vw, 34px); }
+.header__link {
+  font: 600 11px / 1 var(--font-title); letter-spacing: 0.2em; text-transform: uppercase;
+  display: flex; gap: 0.7em; align-items: center; opacity: 0.6; transition: opacity 0.3s; padding: 8px 0;
+}
+.header__link b { font-weight: 600; }
+.header__link:hover, .header__link[aria-current='true'] { opacity: 1; }
+.header__link[aria-current='true'] b { color: var(--terracota); }
+.header__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor; opacity: 0.14; }
+.header__bar {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--terracota); transform: scaleX(0); transform-origin: 0 50%;
+}
+
+@media (max-width: 767px) {
+  :root { --header-h: 56px; }
+  .header__link span { display: none; }
+  .header__brand { font-size: 11px; }
+}
