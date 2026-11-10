@@ -1,5 +1,8 @@
+/* Âncoras narrativas dos links do menu (o stage é fixo em tela cheia; o header fica sobreposto) */
+.anchor { position: absolute; left: 0; width: 1px; height: 1px; pointer-events: none; scroll-margin-top: 0; }
+
 /* ═════ CAPÍTULO 01 — HERO ═════ */
-.hero { position: relative; height: 520vh; background: var(--grafite); color: var(--marfim); }
+.hero { position: relative; height: 580vh; background: var(--grafite); color: var(--marfim); }
 .hero__layer { position: absolute; inset: 0; }
 .hero__facade img { transform-origin: 58% 62%; object-position: 55% 50%; will-change: transform; }
 .hero__gate { opacity: 0; }
@@ -70,13 +73,13 @@
 
 /* ═════ CENA 06 — FERRO E PEDRA ═════ */
 .ferro { background: var(--grafite); color: var(--marfim); position: relative; overflow: clip; padding: 20vh var(--pad) 16vh; }
-.ferro__head { max-width: 1200px; margin: 0 auto 9vh; }
+.ferro__head { max-width: clamp(1200px, 62vw, 1500px); margin: 0 auto 9vh; }
 .ferro__head .kicker { margin-bottom: 1.2rem; }
 .ferro__title { font-weight: 300; }
 /* Três colunas iguais, container centralizado, mesma proporção. A central desce 72px (decisão de direção de arte). */
 .ferro__grid {
   --gap: clamp(20px, 3vw, 44px);
-  position: relative; max-width: 1200px; margin: 0 auto;
+  position: relative; max-width: clamp(1200px, 62vw, 1500px); margin: 0 auto;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); align-items: start;
 }
 /* Palavras decorativas: uma por coluna, acima das fotos, camada inferior e contraste discreto */
@@ -114,7 +117,8 @@
 .tr__green { position: absolute; inset: 0; background: var(--verde); clip-path: inset(100% 0 0 0); }
 .tr__content { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 2rem; text-align: center; }
 .tr__word { text-transform: uppercase; font-weight: 200; letter-spacing: 0.02em; font-size: clamp(40px, 10vw, 160px); opacity: 0; }
-.tr__sub { margin: 0; opacity: 0; }
+.tr__sub { margin: 0; opacity: 0; font-size: clamp(12px, 1.05vw, 15px); display: flex; align-items: center; gap: 1rem; }
+.tr__sub::before { content: ''; width: 40px; height: 1px; background: var(--terracota); }
 
 .partida { background: var(--verde); color: var(--marfim); padding: 14vh var(--pad) 22vh; }
 .partida__grid { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(40px, 8vw, 140px); align-items: start; }
@@ -168,10 +172,16 @@
 .st__prop { opacity: 0; }
 .st__shade {
   position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgba(10, 18, 14, 0.88), rgba(10, 18, 14, 0) 60%), linear-gradient(to right, rgba(10, 18, 14, 0.6), rgba(10, 18, 14, 0) 65%);
+  background:
+    linear-gradient(to top, rgba(10, 18, 14, 0.88), rgba(10, 18, 14, 0) 60%),
+    linear-gradient(to right, rgba(10, 18, 14, 0.6), rgba(10, 18, 14, 0) 65%),
+    /* canto inferior direito (lista de usos) */
+    radial-gradient(ellipse 52% 66% at 100% 100%, rgba(10, 18, 14, 0.85), rgba(10, 18, 14, 0) 100%),
+    /* canto superior direito (nota do estudo) */
+    radial-gradient(ellipse 46% 40% at 100% 0%, rgba(10, 18, 14, 0.78), rgba(10, 18, 14, 0) 100%);
 }
-.st__title { position: absolute; left: var(--pad); bottom: 11vh; max-width: min(15em, 60vw); }
-.st__title .t-chapter { font-size: clamp(32px, 4.4vw, 68px); }
+.st__title { position: absolute; left: var(--pad); bottom: 11vh; max-width: min(62vw, 960px); }
+.st__title .t-chapter { font-size: clamp(28px, min(4.4vw, 8vh), 68px); max-width: 13em; }
 .st__tags { position: absolute; top: calc(var(--header-h) + 5vh); left: var(--pad); }
 .st__tag {
   position: absolute; left: 0; top: 0; white-space: nowrap; padding: 8px 14px; background: var(--terracota); color: var(--branco);
@@ -182,10 +192,15 @@
   position: absolute; right: var(--pad); bottom: 11vh; list-style: none; padding: 0; display: grid; gap: 0.9rem; max-width: 22em;
 }
 .st__uses li {
-  opacity: 0; padding-top: 0.9rem; border-top: 1px solid rgba(247, 243, 234, 0.4);
-  font: 500 clamp(14px, 1.2vw, 18px) / 1.35 var(--font-title); letter-spacing: 0.01em;
+  opacity: 0; padding-top: 0.9rem; border-top: 1px solid rgba(247, 243, 234, 0.55);
+  font: 600 clamp(15px, 1.3vw, 20px) / 1.35 var(--font-title); letter-spacing: 0.01em;
+  color: var(--branco); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7), 0 0 18px rgba(0, 0, 0, 0.55);
 }
-.st__note { position: absolute; right: var(--pad); top: calc(var(--header-h) + 5vh); max-width: 30ch; text-align: right; opacity: 0; }
+.st__note {
+  position: absolute; right: var(--pad); top: calc(var(--header-h) + 5vh); max-width: 32ch; text-align: right; opacity: 0;
+  font-size: clamp(13px, 1.05vw, 16px); font-weight: 500; line-height: 1.5; color: var(--branco);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 16px rgba(0, 0, 0, 0.6);
+}
 .st__hint { position: absolute; left: 50%; bottom: 3.5vh; transform: translateX(-50%); letter-spacing: 0.24em; text-transform: uppercase; }
 
 /* Cena 11 — encerramento */
@@ -195,10 +210,10 @@
 .fim__photo img { object-position: 55% 55%; will-change: transform; }
 .fim__wash { position: absolute; inset: 0; background: var(--verde); }
 .fim__content { position: absolute; left: var(--pad); right: var(--pad); top: 50%; transform: translateY(-56%); }
-.fim__title { margin-bottom: 2.4rem; font-size: clamp(38px, 6.2vw, 96px); }
+.fim__title { margin-bottom: 2.4rem; font-size: clamp(34px, min(6.2vw, 11vh), 96px); }
 .fim__line { display: block; overflow: hidden; padding-bottom: 0.08em; }
 .fim__line span { display: block; will-change: transform; }
-.fim__text { max-width: 24em; font-weight: 300; font-size: clamp(20px, 2vw, 30px); opacity: 0; }
+.fim__text { max-width: 24em; font-weight: 300; font-size: clamp(17px, min(2vw, 3.6vh), 30px); opacity: 0; }
 .fim__foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 5vh; opacity: 0; display: grid; gap: 0.6rem; }
 .fim__brand { font: 800 13px / 1 var(--font-title); letter-spacing: 0.22em; text-transform: uppercase; }
 .fim__brand span { font-weight: 300; }
@@ -216,7 +231,7 @@
 }
 
 @media (max-width: 767px) {
-  .hero { height: 460vh; }
+  .hero { height: 520vh; }
   .hero__scene { bottom: 12vh; }
   .hero__scene--3 { bottom: 24vh; }
   .hero__facade img { transform-origin: 62% 62%; object-position: 62% 50%; }
@@ -265,11 +280,30 @@
 
 /* Movimento reduzido: menos distância de scroll, sem animação contínua */
 @media (prefers-reduced-motion: reduce) {
-  .hero { height: 340vh; }
+  .hero { height: 390vh; }
   .mem { height: 230vh; }
   .tr { height: 150vh; }
   .tr__word { font-size: 13vw; }
   .st { height: 320vh; }
   .fim { height: 180vh; }
   .hero__scroll i::after { animation: none; }
+}
+
+/* Notebooks e janelas de baixa altura útil (barra do navegador + barra do sistema): reduz offsets e espaçamentos verticais */
+@media (max-height: 760px) and (min-width: 768px) {
+  .hero__scene { bottom: 12vh; }
+  .hero__scene--3 { bottom: 26vh; }
+  .mem__copy .kicker { margin-bottom: 1rem; }
+  .mem__copy .t-chapter { margin-bottom: 1rem; }
+  .mem__copy .body-text { font-size: 15px; line-height: 1.5; }
+  .st__title { bottom: 8vh; }
+  .st__uses { bottom: 8vh; gap: 0.6rem; }
+  .st__uses li { padding-top: 0.6rem; }
+  .fim__content { transform: translateY(-62%); }
+  .fim__title { margin-bottom: 1.4rem; }
+  .fim__foot { bottom: 3.5vh; gap: 0.4rem; }
+  .fim__foot .caption { font-size: 11px; line-height: 1.4; }
+  .partida { padding-top: 10vh; }
+  .janela__copy { top: 22vh; }
+  .ferro { padding-top: 16vh; }
 }

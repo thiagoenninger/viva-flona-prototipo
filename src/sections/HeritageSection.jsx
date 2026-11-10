@@ -29,6 +29,8 @@ function Memoria() {
 
   return (
     <section className="mem" ref={root} data-theme="dark" data-theme-to="light" data-theme-at="0.5">
+      {/* Âncora narrativa do capítulo 02: ponto em que imagem, título e texto já estão compostos (~88% da cena) */}
+      <span id="patrimonio-intro" className="anchor" aria-hidden="true" style={{ top: 'calc((100% - 100svh) * 0.88)' }} />
       <div className="stage mem__stage">
         <div className="mem__img">
           <img className="cover" src={img('salao')} loading="lazy" decoding="async"

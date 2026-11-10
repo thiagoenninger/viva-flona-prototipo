@@ -27,6 +27,8 @@ function Transformar() {
 
   return (
     <section className="tr" ref={root} data-theme="dark">
+      {/* Âncora narrativa do capítulo 03: verde completo, título e subtítulo já visíveis */}
+      <span id="transformacao-intro" className="anchor" aria-hidden="true" style={{ top: 'calc((100% - 100svh) * 0.9)' }} />
       <div className="stage tr__stage">
         <div className="tr__green" aria-hidden="true" />
         <div className="tr__content">
@@ -113,7 +115,7 @@ function Fachada() {
         <div className="fachada__copy">
           <ChapterTitle n="03" label="Fachada" />
           <h2 className="t-chapter">Uma arquitetura histórica preparada para receber novos usos.</h2>
-          <p className="hint"><i aria-hidden="true" />Arraste o controle ou use as setas do teclado</p>
+          <p className="hint"><i aria-hidden="true" />Arraste o controle</p>
           <p className="caption fachada__note">
             Proposta: imagem conceitual (estudo preliminar), sujeita a ajustes, detalhamento técnico e aprovações dos órgãos responsáveis.
           </p>

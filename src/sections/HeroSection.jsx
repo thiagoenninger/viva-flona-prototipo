@@ -33,13 +33,14 @@ export default function HeroSection() {
         .to(el('.hero__scene--2'), { opacity: 0, y: -30 * k, duration: 1 }, 5.1)
         // Crossfade para o Portão da Maioridade
         .fromTo(el('.hero__gate'), { opacity: 0 }, { opacity: 1, duration: 1.5 }, 5.4)
-        .fromTo(el('.hero__gate img'), { scale: 1 }, { scale: 1 + 0.08 * k, duration: 3.2 }, 5.4)
-        // Cena 03 — a passagem
-        .fromTo(el('.hero__scene--3'), { opacity: 0, y: 40 * k }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 7.2)
-        .to(el('.hero__scene--3'), { opacity: 0, duration: 0.9 }, 8.3)
-        // Aproximação do arco e escurecimento → ambiente interno
-        .fromTo(el('.hero__gate img'), { scale: 1 + 0.08 * k }, { scale: 1 + 0.2 * k, duration: 1.2 }, 8.4)
-        .fromTo(el('.hero__dark'), { opacity: 0 }, { opacity: 1, duration: 1.2 }, 8.4)
+        .fromTo(el('.hero__gate img'), { scale: 1 }, { scale: 1 + 0.08 * k, duration: 4.2 }, 5.4)
+        // Cena 03 — a passagem. O texto entra logo que o portão se firma (6.5) e a imagem
+        // permanece plena por ~3 unidades de scroll antes de qualquer saída (9.6).
+        .fromTo(el('.hero__scene--3'), { opacity: 0, y: 40 * k }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 6.5)
+        .to(el('.hero__scene--3'), { opacity: 0, duration: 0.8 }, 9.6)
+        // Só então: aproximação do arco e escurecimento → ambiente interno
+        .fromTo(el('.hero__gate img'), { scale: 1 + 0.08 * k }, { scale: 1 + 0.2 * k, duration: 1.2 }, 9.8)
+        .fromTo(el('.hero__dark'), { opacity: 0 }, { opacity: 1, duration: 1 }, 10)
     })
   }, { scope: root })
 

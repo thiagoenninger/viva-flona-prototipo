@@ -32,10 +32,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 :focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; }
 
 /* Tipografia */
-.t-hero { font: 300 clamp(44px, 7.2vw, 112px) / 1.02 var(--font-title); letter-spacing: -0.035em; }
-.t-chapter { font: 300 clamp(36px, 5.2vw, 78px) / 1.05 var(--font-title); letter-spacing: -0.03em; }
-.t-sub { font: 400 clamp(26px, 2.8vw, 40px) / 1.15 var(--font-title); letter-spacing: -0.02em; }
-.t-lead { font: 300 clamp(26px, 3.3vw, 50px) / 1.18 var(--font-title); letter-spacing: -0.02em; }
+.t-hero { font: 300 clamp(40px, min(7.2vw, 12.5vh), 112px) / 1.02 var(--font-title); letter-spacing: -0.035em; }
+.t-chapter { font: 300 clamp(30px, min(5.2vw, 9vh), 78px) / 1.05 var(--font-title); letter-spacing: -0.03em; }
+.t-sub { font: 400 clamp(24px, min(2.8vw, 5.5vh), 40px) / 1.15 var(--font-title); letter-spacing: -0.02em; }
+.t-lead { font: 300 clamp(24px, min(3.3vw, 6vh), 50px) / 1.18 var(--font-title); letter-spacing: -0.02em; }
 .kicker {
   font: 600 12px / 1 var(--font-title);
   letter-spacing: 0.24em;

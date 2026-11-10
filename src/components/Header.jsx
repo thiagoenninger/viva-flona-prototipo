@@ -3,9 +3,10 @@ import { gsap, ScrollTrigger, useGSAP } from '../lib'
 import useReducedMotion from '../hooks/useReducedMotion'
 
 const CHAPTERS = [
-  { id: 'lugar', n: '01', label: 'O lugar' },
-  { id: 'patrimonio', n: '02', label: 'O patrimônio' },
-  { id: 'transformacao', n: '03', label: 'A transformação' },
+  // `target` = âncora narrativa: primeira cena já composta e legível (não o início técnico do container)
+  { id: 'lugar', target: 'lugar', n: '01', label: 'O lugar' },
+  { id: 'patrimonio', target: 'patrimonio-intro', n: '02', label: 'O patrimônio' },
+  { id: 'transformacao', target: 'transformacao-intro', n: '03', label: 'A transformação' },
 ]
 
 export default function Header() {
@@ -65,8 +66,8 @@ export default function Header() {
       </a>
       <nav className="header__nav" aria-label="Capítulos">
         {CHAPTERS.map((c, i) => (
-          <a key={c.id} className="header__link" href={`#${c.id}`}
-             aria-current={active === i + 1} onClick={(e) => go(e, c.id)}>
+          <a key={c.id} className="header__link" href={`#${c.target}`}
+             aria-current={active === i + 1} onClick={(e) => go(e, c.target)}>
             <b>{c.n}</b><span>{c.label}</span>
           </a>
         ))}
