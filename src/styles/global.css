@@ -71,6 +71,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   --hbg: rgba(247, 243, 234, 0.82);
   --hline: rgba(32, 39, 34, 0.1);
 }
+/* Seção A paisagem (janela): fundo preto, igual ao da cena */
+.header[data-tone='black'] {
+  --hbg: rgba(1, 1, 1, 0.94);
+  --hline: rgba(247, 243, 234, 0.08);
+}
 .header::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: var(--hbg); border-bottom: 1px solid var(--hline);
@@ -83,7 +88,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 .header__brand { font: 800 13px / 1 var(--font-title); letter-spacing: 0.22em; text-transform: uppercase; }
-.header__brand span { font-weight: 300; }
+.header__brand { display: flex; align-items: center; }
+.header__brand img { display: block; height: calc(var(--header-h) * 0.74); width: auto; }
 .header__nav { display: flex; gap: clamp(14px, 2.4vw, 34px); }
 .header__link {
   font: 600 11px / 1 var(--font-title); letter-spacing: 0.2em; text-transform: uppercase;
@@ -101,5 +107,4 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 767px) {
   :root { --header-h: 56px; }
   .header__link span { display: none; }
-  .header__brand { font-size: 11px; }
 }

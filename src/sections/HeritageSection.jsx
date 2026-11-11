@@ -198,7 +198,7 @@ function Janela() {
   }, { scope: root })
 
   return (
-    <section className="janela" ref={root} data-theme="dark">
+    <section className="janela" ref={root} data-theme="black">
       <div className="janela__grid">
         <div className="janela__copy">
           <ChapterTitle n="02" label="A paisagem" />
