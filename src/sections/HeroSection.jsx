@@ -45,7 +45,7 @@ export default function HeroSection() {
   }, { scope: root })
 
   return (
-    <section id="lugar" className="hero" ref={root} data-chapter="1" data-theme="dark" aria-label="Capítulo 1 — O lugar">
+    <section id="lugar" className="hero" ref={root} data-theme="dark" aria-label="Capítulo 1 — O lugar">
       <div className="stage hero__stage">
         <div className="hero__layer hero__facade">
           <img className="cover" src={img('fachada-hero')} fetchPriority="high" decoding="async"

@@ -56,55 +56,68 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* Cabeçalho — camada própria (pseudo-elemento) com fundo translúcido + blur, adaptada ao tom da seção */
-:root { --header-h: 64px; }
+:root { --header-h: 56px; }
 .header {
   position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--header-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--pad);
   color: var(--marfim);
   --hbg: rgba(16, 28, 22, 0.78);
-  --hline: rgba(247, 243, 234, 0.1);
   transition: color 0.4s ease;
 }
 .header[data-tone='light'] {
   color: var(--grafite);
   --hbg: rgba(247, 243, 234, 0.82);
-  --hline: rgba(32, 39, 34, 0.1);
 }
 /* Seção A paisagem (janela): fundo preto, igual ao da cena */
 .header[data-tone='black'] {
   --hbg: rgba(1, 1, 1, 0.94);
-  --hline: rgba(247, 243, 234, 0.08);
 }
 .header::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: var(--hbg); border-bottom: 1px solid var(--hline);
+  background: var(--hbg);
   -webkit-backdrop-filter: blur(16px) saturate(1.15); backdrop-filter: blur(16px) saturate(1.15);
   transition: background-color 0.4s ease, opacity 0.4s ease;
 }
 /* Sobre o hero (topo da página) o fundo some e entra um degradê leve para legibilidade */
 .header[data-top='true']::before {
   background: linear-gradient(rgba(10, 18, 14, 0.5), rgba(10, 18, 14, 0));
-  border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
 }
-.header__brand { font: 800 13px / 1 var(--font-title); letter-spacing: 0.22em; text-transform: uppercase; }
 .header__brand { display: flex; align-items: center; }
-.header__brand img { display: block; height: calc(var(--header-h) * 0.74); width: auto; }
-.header__nav { display: flex; gap: clamp(14px, 2.4vw, 34px); }
-.header__link {
-  font: 600 11px / 1 var(--font-title); letter-spacing: 0.2em; text-transform: uppercase;
-  display: flex; gap: 0.7em; align-items: center; opacity: 0.6; transition: opacity 0.3s; padding: 8px 0;
-}
-.header__link b { font-weight: 600; }
-.header__link:hover, .header__link[aria-current='true'] { opacity: 1; }
-.header__link[aria-current='true'] b { color: var(--terracota); }
-.header__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor; opacity: 0.14; }
-.header__bar {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
-  background: var(--terracota); transform: scaleX(0); transform-origin: 0 50%;
+.header__brand img { display: block; height: calc(var(--header-h) * 0.8); width: auto; }
+@media (max-width: 767px) {
+  :root { --header-h: 52px; }
 }
 
-@media (max-width: 767px) {
-  :root { --header-h: 56px; }
-  .header__link span { display: none; }
+/* Indicador vertical de progresso do scroll: 25 traços na lateral direita (informativo, sem interação) */
+.vsp {
+  /* ocupa 50% da altura útil (viewport sem o header), centralizado nessa área; traços distribuídos com espaçamento uniforme */
+  position: fixed; z-index: 90; right: 28px;
+  height: calc((100vh - var(--header-h)) * 0.5); height: calc((100svh - var(--header-h)) * 0.5);
+  top: calc(var(--header-h) + (100vh - var(--header-h)) * 0.25); top: calc(var(--header-h) + (100svh - var(--header-h)) * 0.25);
+  display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; pointer-events: none;
+  --vsp-before: rgba(247, 243, 234, 0.78); --vsp-after: rgba(247, 243, 234, 0.34); --vsp-on: var(--terracota);
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.45));
 }
+.vsp span {
+  display: block; width: 34px; height: 2px; border-radius: 1px; background: var(--vsp-after);
+  transform: scaleX(0.235); transform-origin: right center; will-change: transform;
+  transition: background-color 0.35s ease;
+}
+.vsp span[data-s='before'] { background: var(--vsp-before); }
+.vsp span[data-s='on'] { background: var(--vsp-on); }
+/* seções claras (marfim): traços escuros */
+:root[data-tone='light'] .vsp {
+  --vsp-before: rgba(32, 39, 34, 0.7); --vsp-after: rgba(32, 39, 34, 0.28); filter: none;
+}
+@media (max-width: 1100px) {
+  .vsp { right: 18px; }
+  .vsp span { width: 26px; }
+}
+@media (max-width: 767px) {
+  .vsp { right: 4px; }
+  .vsp span { width: 14px; height: 2px; }
+}
+@media (max-height: 420px) { .vsp { display: none; } }
+@media (prefers-reduced-motion: reduce) { .vsp span { transition: none; } }

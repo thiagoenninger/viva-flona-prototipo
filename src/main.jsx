@@ -4,6 +4,7 @@ import '@fontsource-variable/manrope'
 import '@fontsource-variable/inter'
 import './styles/global.css'
 import './styles/scenes.css'
+import './styles/sponsorship.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(

@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { ScrollTrigger, IMAGES, img } from './lib'
 import Header from './components/Header'
+import VerticalScrollProgress from './components/VerticalScrollProgress'
 import HeroSection from './sections/HeroSection'
 import HeritageSection from './sections/HeritageSection'
 import TransformationSection from './sections/TransformationSection'
+import SponsorshipSection from './sections/SponsorshipSection'
 
 export default function App() {
   useEffect(() => {
@@ -26,10 +28,12 @@ export default function App() {
   return (
     <>
       <Header />
+      <VerticalScrollProgress />
       <main>
         <HeroSection />
         <HeritageSection />
         <TransformationSection />
+        <SponsorshipSection />
       </main>
     </>
   )
