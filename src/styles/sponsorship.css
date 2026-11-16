@@ -101,7 +101,8 @@
 .sp__total-d { margin-top: 0.6rem; font-size: 12.5px; opacity: 0.65; }
 
 /* Aplicações da marca */
-.sp__vis { margin-top: 11vh; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 110px); align-items: start; }
+.sp__vis { margin-top: 11vh; display: grid; grid-template-columns: minmax(0, 600px) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); align-items: start; }
+.sp__vis .sp__apps { width: 100%; max-width: 580px; justify-self: center; } /* centrado no espaço à direita da imagem */
 .sp__fig { position: relative; aspect-ratio: 4 / 3; max-width: 600px; background: #010101; overflow: hidden; }
 .sp__fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; animation: spFade 0.32s ease both; }
 .sp__fig figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; font: 700 10px / 1 var(--font-title); letter-spacing: 0.18em; text-transform: uppercase; background: var(--terracota); color: var(--branco); }
@@ -183,6 +184,7 @@
   .sp__list li { gap: 1rem; }
   .sp__fiscal { grid-template-columns: 1fr; gap: 24px; margin-top: 8vh; }
   .sp__vis { grid-template-columns: 1fr; gap: 28px; margin-top: 8vh; }
+  .sp__vis .sp__apps { max-width: none; justify-self: stretch; }
   .lead__row { flex-direction: column; }
   .lead__row input[type='email'] { font-size: 13px; padding: 0 14px; }
   .lead__send { width: 100%; }
@@ -192,6 +194,7 @@
 @media (max-width: 1100px) {
   .sp__grid { grid-template-columns: 1fr; gap: 28px; }
   .sp__vis { grid-template-columns: 1fr; gap: 32px; }
+  .sp__vis .sp__apps { max-width: none; justify-self: stretch; }
   .sp__fiscal { grid-template-columns: 1fr 1fr; }
   .sp__total { grid-column: 1 / -1; }
 }

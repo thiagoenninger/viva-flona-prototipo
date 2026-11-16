@@ -76,15 +76,18 @@ export const FISCAL = {
 
 // Aplicações ilustrativas da marca (p. 21). Imagens extraídas do próprio PDF.
 export const APPLICATIONS = [
-  { id: 'recepcao', title: 'Recepção', image: 'recepcao', w: 446, h: 363,
+  { id: 'recepcao', title: 'Recepção', image: 'recepcao-completa', w: 446, h: 363,
     text: 'Painel de boas-vindas com reconhecimento dos patrocinadores.', benefit: 'placa' },
-  { id: 'minidoc', title: 'Minidocumentário', image: 'minidocumentario', w: 398, h: 233,
+  { id: 'minidoc', title: 'Minidocumentário', image: 'minidocumentario', perTier: { apoiador: 'minidocumentario-apoiador', bronze: 'minidocumentario-bronze', prata: 'minidocumentario-prata', ouro: 'minidocumentario-ouro' }, w: 398, h: 233,
     text: 'Marca do patrocinador nos créditos e disponibilização para uso institucional.', benefit: 'minidoc' },
-  { id: 'publicacao', title: 'Publicação', image: 'publicacao', w: 494, h: 237,
+  { id: 'publicacao', title: 'Publicação', image: 'publicacao-completa', w: 494, h: 237,
     text: 'Marca do patrocinador nos créditos e disponibilização para uso institucional.', benefit: 'publicacao' },
-  { id: 'totem', title: 'Totem de conteúdo', image: 'totem', w: 404, h: 375,
+  { id: 'totem', title: 'Totem de conteúdo', image: 'totem', perTier: { apoiador: 'totem-apoiadora', bronze: 'totem-bronze', prata: 'totem-prata', ouro: 'totem-ouro' }, w: 404, h: 375,
     text: 'Identificação do patrocinador em núcleos temáticos da exposição.', benefit: 'nucleo' },
 ]
+
+// Imagem da aplicação para a cota (Diamante mantém a imagem base)
+export const imageFor = (app, tierId) => app.perTier?.[tierId] ?? app.image
 
 export const VISUALS_NOTE =
   'Imagens meramente ilustrativas, apresentadas como referências conceituais. Os layouts e as aplicações das marcas serão definidos posteriormente, conforme o desenvolvimento do projeto e as aprovações institucionais necessárias.'

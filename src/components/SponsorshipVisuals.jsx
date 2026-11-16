@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { APPLICATIONS, BENEFITS, TIERS, formatValue } from '../data/sponsorshipTiers'
+import { APPLICATIONS, BENEFITS, TIERS, formatValue, imageFor } from '../data/sponsorshipTiers'
 
 const byId = (id) => BENEFITS.find((b) => b.id === id)
 
@@ -23,7 +23,7 @@ export default function SponsorshipVisuals({ tierIndex }) {
   return (
     <div className="sp__vis">
       <figure className="sp__fig">
-        <img key={app.id} src={`${import.meta.env.BASE_URL}images/patrocinio/${app.image}.webp`} width={app.w} height={app.h}
+        <img key={`${app.id}-${tier.id}`} src={`${import.meta.env.BASE_URL}images/patrocinio/${imageFor(app, tier.id)}.webp`} width={app.w} height={app.h}
           alt={`${app.title}: referência conceitual de aplicação da marca do patrocinador`} loading="lazy" decoding="async" />
         <figcaption>Imagem ilustrativa</figcaption>
       </figure>
