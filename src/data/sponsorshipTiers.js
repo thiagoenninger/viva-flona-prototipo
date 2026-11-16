@@ -13,6 +13,10 @@ export const TIERS = [
   { id: 'diamante', name: 'Diamante', range: 'Acima de R$ 2 milhões', pdfRange: 'Acima de R$ 2 mi' },
 ]
 
+// Ordem de exibição (do maior para o menor). Os dados e os índices de `values` seguem a ordem do PDF (TIERS).
+export const TIERS_DISPLAY = [...TIERS].reverse()
+export const DEFAULT_TIER = 'diamante'
+
 export const CATEGORIES = [
   { id: 'marca', label: 'Marca', page: 18 },
   { id: 'conteudo', label: 'Conteúdo', page: 19 },

@@ -8,6 +8,7 @@ export default function SponsorshipBenefits({ tierIndex }) {
   const [cat, setCat] = useState('marca')
   const [compare, setCompare] = useState(false)
   const tier = TIERS[tierIndex]
+  const order = TIERS.map((_, i) => i).reverse() // Diamante → Apoiador
   const items = benefitsFor(tierIndex, cat)
   const cats = CATEGORIES.map((c) => ({ id: c.id, label: c.label, n: benefitsFor(tierIndex, c.id).length }))
   const all = BENEFITS.filter((b) => b.cat === cat)
@@ -29,8 +30,8 @@ export default function SponsorshipBenefits({ tierIndex }) {
               <thead>
                 <tr>
                   <th scope="col"><span className="sr-only">Contrapartida</span></th>
-                  {TIERS.map((t, i) => (
-                    <th scope="col" key={t.id} data-on={i === tierIndex}>{t.name}<small>{t.pdfRange}</small></th>
+                  {order.map((i) => (
+                    <th scope="col" key={TIERS[i].id} data-on={i === tierIndex}>{TIERS[i].name}<small>{TIERS[i].pdfRange}</small></th>
                   ))}
                 </tr>
               </thead>
@@ -38,8 +39,8 @@ export default function SponsorshipBenefits({ tierIndex }) {
                 {all.map((b) => (
                   <tr key={b.id}>
                     <th scope="row">{b.label}</th>
-                    {b.values.map((v, i) => (
-                      <td key={i} data-on={i === tierIndex} data-empty={v == null}>{cell(v)}</td>
+                    {order.map((i) => (
+                      <td key={i} data-on={i === tierIndex} data-empty={b.values[i] == null}>{cell(b.values[i])}</td>
                     ))}
                   </tr>
                 ))}

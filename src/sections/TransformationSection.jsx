@@ -155,7 +155,7 @@ function SalaoTransforma() {
         .fromTo(q('.st__note'), { opacity: 0 }, { opacity: 1, duration: 0.8 }, 3.6)
         .fromTo(q('.st__uses li'), { opacity: 0, y: 20 * k }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.4, ease: 'power2.out' }, 4.4)
         // Final: a imagem e o degradê passam a ser os do capítulo 04 (idênticos, por baixo); só os textos seguem a rolagem
-        .to([q('.st__imgs'), q('.st__shade')], { opacity: 0, duration: 0.2 }, 6.7)
+        .to([q('.st__imgs'), q('.st__shade')], { opacity: 0, duration: 0.3 }, 6.2)
     })
   }, { scope: root })
 

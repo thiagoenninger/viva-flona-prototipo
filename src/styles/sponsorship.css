@@ -1,8 +1,9 @@
 /* ═════ CAPÍTULO 04 — FAÇA PARTE DESSA HISTÓRIA ═════ */
 
 /* Cena 01 — transição */
-/* A cena sobe 112svh sobre o fim do salão (100svh do palco + 12svh de folga): a mesma imagem fica fixa por baixo. */
-.spi { position: relative; z-index: 1; height: 400vh; height: 400svh; margin-top: -112vh; margin-top: -112svh; background: transparent; color: var(--marfim); }
+/* A cena sobe 140svh sobre o fim do salão (100svh do palco + 40svh de folga): a mesma imagem já está fixa por baixo
+   antes de o salão começar a subir, e só então a imagem do salão some (sem que ela suba junto). */
+.spi { position: relative; z-index: 1; height: 428vh; height: 428svh; margin-top: -140vh; margin-top: -140svh; background: transparent; color: var(--marfim); }
 .spi__stage { background: var(--grafite); }
 .spi__shade0 { opacity: 1; }
 .spi__photo { position: absolute; inset: 0; }
