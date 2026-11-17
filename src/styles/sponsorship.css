@@ -165,6 +165,23 @@
 .fim__foot a { text-decoration: underline; text-underline-offset: 3px; }
 .fim__pdf { margin-top: 14px; }
 
+/* Logos institucionais: canto inferior direito, alinhados ao topo do texto "Viva Flona Ipanema · Casa da Guarda" */
+.fim__logos { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 14px clamp(18px, 2vw, 32px); }
+.fim__logos li { list-style: none; margin: 0; padding: 0; }
+.fim__logos img { display: block; height: var(--lh); width: auto; max-width: none; }
+@media (min-width: 1100px) {
+  .fim__foot { position: absolute; }
+  .fim__logos { position: absolute; top: 0; right: 0; flex-wrap: nowrap; }
+  .fim__foot .caption { max-width: calc(100% - 560px); }
+}
+@media (max-width: 1099px) {
+  .fim__logos { order: 3; justify-content: flex-start; margin-top: 0.4rem; }
+}
+@media (max-width: 767px) {
+  .fim__logos { gap: 10px 16px; }
+  .fim__logos img { height: calc(var(--lh) * 0.7); }
+}
+
 @media (max-height: 760px) and (min-width: 768px) {
   .sp { padding-top: 10vh; }
   .sp__grid { padding-top: 6vh; }
@@ -201,4 +218,14 @@
 
 @media (max-width: 767px) {
   .sp__fiscal { grid-template-columns: 1fr; }
+}
+
+/* Celulares baixos: compacta a tela final para o rodapé (com logos) não encostar nos botões */
+@media (max-width: 767px) and (max-height: 760px) {
+  .fim__content { top: 46%; transform: translateY(-58%); }
+  .fim__title { font-size: clamp(30px, 9.2vw, 38px); margin-bottom: 0.9rem; }
+  .fim__cta { margin-top: 0.9rem; }
+  .fim__pdf { margin-top: 10px; }
+  .fim__foot { bottom: 2.4vh; }
+  .fim__logos img { height: calc(var(--lh) * 0.58); }
 }

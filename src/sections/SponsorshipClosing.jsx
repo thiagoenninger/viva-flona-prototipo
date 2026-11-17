@@ -2,6 +2,14 @@ import { useRef, useState } from 'react'
 import { gsap, useGSAP, MQ, img } from '../lib'
 import { CONTACT, LEAD_FORM } from '../data/sponsorshipTiers'
 
+// Ordem: Lei Rouanet / ICMBio / ICQ / MinC. `size` = altura (px) em desktop, ajustada para equilibrar o peso visual.
+const LOGOS = [
+  { id: 'rouanet', alt: 'Lei Rouanet', w: 640, h: 177, size: 30 },
+  { id: 'icmbio', alt: 'ICMBio — Instituto Chico Mendes de Conservação da Biodiversidade', w: 640, h: 331, size: 42 },
+  { id: 'icq', alt: 'Instituto Cultural Quattro', w: 640, h: 249, size: 36 },
+  { id: 'minc', alt: 'Ministério da Cultura — Governo do Brasil', w: 640, h: 152, size: 30 },
+]
+
 const ALL = { motion: MQ.motion, reduce: MQ.reduce, small: MQ.small }
 const MAIL = `mailto:${CONTACT.email}?subject=${encodeURIComponent(CONTACT.subject)}`
 
@@ -106,6 +114,12 @@ export default function SponsorshipClosing() {
           </div>
         </div>
         <footer className="fim__foot">
+          <ul className="fim__logos" aria-label="Realização e apoio">
+            {LOGOS.map((l) => (
+              <li key={l.id}><img src={`${import.meta.env.BASE_URL}images/logo/${l.id}.webp`} alt={l.alt} width={l.w} height={l.h}
+                style={{ '--lh': `${l.size}px` }} loading="lazy" decoding="async" /></li>
+            ))}
+          </ul>
           <p className="fim__brand">Viva Flona <span>Ipanema</span> · Casa da Guarda</p>
           <p className="caption">
             {CONTACT.org} · {CONTACT.person} · <a href={MAIL}>{CONTACT.email}</a> · <a href={CONTACT.phoneHref}>{CONTACT.phone}</a><br />

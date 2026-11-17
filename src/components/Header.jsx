@@ -28,12 +28,27 @@ export default function Header() {
       })
     })
 
-    // Estado "no topo": cabeçalho transparente sobre o hero; depois ganha fundo + blur
-    ScrollTrigger.create({
-      trigger: document.body, start: 'top -24',
-      onToggle: (st) => { if (root.current) root.current.dataset.top = st.isActive ? 'false' : 'true' },
-    })
-
+    // Estado "no topo": o cabeçalho fica transparente durante todo o hero e só ganha o fundo verde
+    // quando o verde ocupa a tela inteira (camada .hero__dark opaca) ou quando o hero já saiu de cena.
+    const hero = document.getElementById('lugar')
+    const dark = hero?.querySelector('.hero__dark')
+    let heroPast = false
+    let current = null
+    if (hero) {
+      ScrollTrigger.create({
+        trigger: hero, start: 'bottom bottom', end: 'max',
+        onToggle: (st) => { heroPast = st.isActive },
+      })
+    }
+    const tick = () => {
+      const covered = dark ? Number(gsap.getProperty(dark, 'opacity')) >= 0.98 : true
+      const atTop = !(heroPast || covered)
+      if (atTop === current) return
+      current = atTop
+      if (root.current) root.current.dataset.top = atTop ? 'true' : 'false'
+    }
+    gsap.ticker.add(tick)
+    return () => gsap.ticker.remove(tick)
   }, { scope: root })
 
   const go = (e, id) => {
