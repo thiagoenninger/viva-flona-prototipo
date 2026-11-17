@@ -28,7 +28,7 @@ export default function HeroSection() {
         .fromTo(el('.hero__scene--1'), { opacity: 1, y: 0 }, { opacity: 0, y: -40 * k, duration: 1.6 }, 0.3)
         .fromTo(el('.hero__scroll'), { opacity: 1 }, { opacity: 0, duration: 0.5 }, 0)
         // Cena 02 — aproximação em direção à entrada (escala limitada p/ não perder resolução)
-        .fromTo(el('.hero__facade img'), { scale: 1 + 0.12 * k }, { scale: 1 + 0.25 * k, duration: 3.2 }, 3)
+        .fromTo(el('.hero__facade img'), { scale: 1 + 0.12 * k }, { scale: 1 + 0.25 * k, duration: 3.2, immediateRender: false }, 3)
         .fromTo(el('.hero__scene--2'), { opacity: 0, y: 40 * k }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 3.2)
         .to(el('.hero__scene--2'), { opacity: 0, y: -30 * k, duration: 1 }, 5.1)
         // Crossfade para o Portão da Maioridade
@@ -39,7 +39,7 @@ export default function HeroSection() {
         .fromTo(el('.hero__scene--3'), { opacity: 0, y: 40 * k }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 6.5)
         .to(el('.hero__scene--3'), { opacity: 0, duration: 0.8 }, 9.6)
         // Só então: aproximação do arco e escurecimento → ambiente interno
-        .fromTo(el('.hero__gate img'), { scale: 1 + 0.08 * k }, { scale: 1 + 0.2 * k, duration: 1.2 }, 9.8)
+        .fromTo(el('.hero__gate img'), { scale: 1 + 0.08 * k }, { scale: 1 + 0.2 * k, duration: 1.2, immediateRender: false }, 9.8)
         .fromTo(el('.hero__dark'), { opacity: 0 }, { opacity: 1, duration: 1 }, 10)
     })
   }, { scope: root })
